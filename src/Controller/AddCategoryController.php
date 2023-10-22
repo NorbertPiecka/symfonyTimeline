@@ -29,12 +29,13 @@ class AddCategoryController extends AbstractController
                 echo "<script>alert('No name provided or name too long');</script>";
                 $validation_ok = false;
             }
+
             if(!ctype_xdigit($color))
             {
                 echo "<script>alert('Color not in hex');</script>";
                 $validation_ok = false;
             }
-            $db_color = '#' . $color;
+
             if($validation_ok)
             {
                 $category = new Category();
@@ -43,7 +44,6 @@ class AddCategoryController extends AbstractController
 
                 $this->entityManager->persist($category);
                 $this->entityManager->flush();
-                echo "<script>alert('Category added!');</script>";
                 return $this->redirectToRoute('app_admin_panel');
             }
         }

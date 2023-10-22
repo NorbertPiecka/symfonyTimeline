@@ -3,5 +3,22 @@
 {% block title %}World War II Timeline{% endblock %}
 
 {% block body %}
-    
+    <div>
+        <div>
+            <a href="{{ path('app_home_page') }}">ALL</a>
+        </div>
+        {% for category in categories %}
+            <div>
+                <a href="{{ path('app_home_page_id', {'item': category.id}) }}">{{ category.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div>
+        {% for event in events %}
+            <div>
+                <p>{{ event.name }}</p>
+                <br>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

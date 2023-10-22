@@ -3,5 +3,43 @@
 {% block title %}Modify Event{% endblock %}
 
 {% block body %}
-
+    <div>
+        <h1>Update Event - {{ event.name }}</h1>
+    </div>
+    <div>
+        <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="event_name">Event name</label>
+                <input type="text" class="form-control" id="event_name" name="event_name" placeholder="{{ event.name }}" value="{{ event.name }}">
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start date</label>
+                <input type="text" class="form-control" id="start_date" name="start_date" placeholder="{{ event.getStartDateString() }}" value="{{ event.getStartDateString() }}" onfocus="(this.type='date')" onblur="(this.type='text')">
+            </div>
+            <div class="form-group">
+                <label for="end_date">End date</label>
+                <input type="text" class="form-control" id="end_date" name="end_date" placeholder=placeholder="{{ event.getEndDateString() }}" value="{{ event.getEndDateString() }}" onfocus="(this.type='date')" onblur="(this.type='text')">
+            </div>
+            <div class="form-group">
+                <label for="description">Event Description</label>
+                <input type="textarea" class="form-control" id="event_desc" name="event_desc" placeholder="{{ event.description }}" value="{{ event.description }}">
+            </div>
+            <div class="form-group">
+                <label for="category">Event Category</label>
+                <select class="form-select" name="event_category" id="event_category" aria-label="category-select">
+                    <option selected value="{{ event.category.id }}">{{ event.category.name }}</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept=".jpg, .jpeg, .png" value="">
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

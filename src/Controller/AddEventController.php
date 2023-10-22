@@ -74,16 +74,16 @@ class AddEventController extends AbstractController
                 $validation_ok = false;
             }
 
-            if($_FILES["images"]["error"] === 4)
+            if($_FILES["image"]["error"] === 4)
             {
                 echo "<script>alert('Image dose not exist');</script>";
                 $validation_ok = false;
             }
             else
             {
-                $file_name = $_FILES["images"]["name"];
-                $file_size = $_FILES["images"]["size"];
-                $tmp_name = $_FILES["images"]["tmp_name"];
+                $file_name = $_FILES["image"]["name"];
+                $file_size = $_FILES["image"]["size"];
+                $tmp_name = $_FILES["image"]["tmp_name"];
                 $valid_extensions = ['jpg', 'jpeg', 'png'];
                 $image_extension = explode('.', $file_name);
                 $image_extension = strtolower(end($image_extension));
@@ -101,7 +101,7 @@ class AddEventController extends AbstractController
                 {
                     $image_name = uniqid();
                     $image_name .= '.' . $image_extension;
-                    $destination = $this->appKernel->getProjectDir() . 'public\images\\'. $image_name;
+                    $destination = $this->appKernel->getProjectDir() . '\public\images\\'. $image_name;
                     move_uploaded_file($tmp_name, $destination);
                 }
             }

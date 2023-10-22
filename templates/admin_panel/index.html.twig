@@ -26,8 +26,8 @@
                         </td>
                         <td>
                             <div>
-                                <a href="#">DELETE</a>
-                                <a href="{{ path('app_modify_category', {'item': category.id}) }}">MODIFY</a>
+                                <a href="{{ path('app_delete_category', {'item': category.id}) }}">DELETE</a>
+                                <a href="{{ path('app_modify_category', {'item': category.id}) }}">UPDATE</a>
                             </div>
                         </td>
                     </tr>
@@ -68,8 +68,8 @@
                             <img src="{{ asset("images/#{event.imagePath}") }}" width="200" alt="{{ event.getImagePath() }}"></td>
                         <td>
                             <div>
-                                <a href="#">DELETE</a>
-                                <a href="#">MODIFY</a>
+                                <a href="{{ path('app_delete_event', {'item': event.id}) }}">DELETE</a>
+                                <a href="{{ path('app_modify_event', {'item': event.id}) }}">UPDATE</a>
                             </div>
                         </td>
                     </tr>
