@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RemoveEventController extends AbstractController
 {
-    #[Route('/remove/event', name: 'app_remove_event')]
+    #[Route('/admin/remove/event', name: 'app_remove_event')]
     public function index(): Response
     {
         return $this->render('remove_event/index.html.twig', [
