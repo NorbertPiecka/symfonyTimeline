@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modify Category{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Update Category - {{ category.name }}</h1>
+    </div>
+    <div>
+        <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Category name</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="{{ category.name }}" value="{{ category.name }}">
+            </div>
+            <div class="form-group">
+                <label for="color">Category color in hex</label>
+                <input type="text" class="form-control" id="category_color" name="category_color" placeholder="{{ category.color | replace({'#':''}) }}" value="{{ category.color | replace({'#':''}) }}">
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

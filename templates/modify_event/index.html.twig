@@ -1,20 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ModifyEventController!{% endblock %}
+{% block title %}Modify Event{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Projects/symfony/timeline/src/Controller/ModifyEventController.php'|file_link(0) }}">src/Controller/ModifyEventController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Projects/symfony/timeline/templates/modify_event/index.html.twig'|file_link(0) }}">templates/modify_event/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div>
+        <h1>Update Event - {{ event.name }}</h1>
+    </div>
+    <div>
+        <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="event_name">Event name</label>
+                <input type="text" class="form-control" id="event_name" name="event_name" placeholder="{{ event.name }}" value="{{ event.name }}">
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start date</label>
+                <input type="text" class="form-control" id="start_date" name="start_date" placeholder="{{ event.getStartDateString() }}" value="{{ event.getStartDateString() }}" onfocus="(this.type='date')" onblur="(this.type='text')">
+            </div>
+            <div class="form-group">
+                <label for="end_date">End date</label>
+                <input type="text" class="form-control" id="end_date" name="end_date" placeholder=placeholder="{{ event.getEndDateString() }}" value="{{ event.getEndDateString() }}" onfocus="(this.type='date')" onblur="(this.type='text')">
+            </div>
+            <div class="form-group">
+                <label for="description">Event Description</label>
+                <input type="textarea" class="form-control" id="event_desc" name="event_desc" placeholder="{{ event.description }}" value="{{ event.description }}">
+            </div>
+            <div class="form-group">
+                <label for="category">Event Category</label>
+                <select class="form-select" name="event_category" id="event_category" aria-label="category-select">
+                    <option selected value="{{ event.category.id }}">{{ event.category.name }}</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept=".jpg, .jpeg, .png" value="">
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

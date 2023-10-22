@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block body %}
+    <div>
+    <h4>Categories</h4>
+        <img src="">
+        <a href="{{ path('app_add_category') }}">Add New Category</a>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Category Color</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <th scope="row">{{ category.id }}</th>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <div style="color:{{ category.color }}">&#9632;</div>
+                        </td>
+                        <td>
+                            <div>
+                                <a href="{{ path('app_delete_category', {'item': category.id}) }}">DELETE</a>
+                                <a href="{{ path('app_modify_category', {'item': category.id}) }}">UPDATE</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h4>Events</h4>
+        <a href="{{ path('app_add_event') }}">Add New Event</a>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Event Name</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Create Date</th>
+                    <th scope="col">Update Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <th scope="row">{{ event.id }}</th>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.getStartDateString() }}</td>
+                        <td>{{ event.getEndDateString() }}</td>
+                        <td>{{ event.getCreateDateString() }}</td>
+                        <td>{{ event.getUpdateDateString() }}</td>
+                        <td>{{ event.description }}</td>
+                        <td>{{ event.category.name }}</td>
+                        <td>
+                            <img src="{{ asset("images/#{event.imagePath}") }}" width="200" alt="{{ event.getImagePath() }}"></td>
+                        <td>
+                            <div>
+                                <a href="{{ path('app_delete_event', {'item': event.id}) }}">DELETE</a>
+                                <a href="{{ path('app_modify_event', {'item': event.id}) }}">UPDATE</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
