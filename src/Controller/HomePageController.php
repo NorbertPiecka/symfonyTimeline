@@ -17,24 +17,32 @@ class HomePageController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    function eventComparator($object1, $object2)
+    {
+        return $object1->getStartDate() > $object2->getStartDate();
+    }
+
     #[Route('/', name: 'app_home_page')]
     public function index(): Response
     {
         $events = $this->entityManager->getRepository(Event::class)->findAll();
+        usort($events, function($a, $b) {return $a->getStartDate() > $b->getStartDate();});
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
         return $this->render('home_page/index.html.twig', [
             'events' => $events, 'categories' => $categories,
         ]);
     }
 
-    #[Route('/{item}', name: 'app_home_page_id')]
+    #[Route('category/{item}', name: 'app_home_page_id')]
     public function getOnlyOneCategory($item): Response
     {
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
         $category = $this->entityManager->getRepository(Category::class)->find($item);
         $events = $this->entityManager->getRepository(Event::class)->findBy(['category' => $category]);
+        usort($events, function($a, $b) {return $a->getStartDate() > $b->getStartDate();});
         return $this->render('home_page/index.html.twig', [
             'events' => $events, 'categories' => $categories,
         ]);
     }
 }
+

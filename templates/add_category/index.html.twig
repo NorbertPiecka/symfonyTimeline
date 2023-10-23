@@ -3,22 +3,24 @@
 {% block title %}Add Category{% endblock %}
 
 {% block body %}
-    <div>
-        <h1>Create New Category</h1>
-    </div>
-    <div>
-        <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="name">Category name</label>
-                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Category Name">
-            </div>
-            <div class="form-group">
-                <label for="color">Category color in hex</label>
-                <input type="text" class="form-control" id="category_color" name="category_color" placeholder="000000">
-            </div>
-            <div class="form-group">
-                <button type="submit" name="submit">Submit</button>
-            </div>
-        </form>
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+        <div>
+            <h1>Create New Category</h1>
+        </div>
+        <div>
+            <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                <div class="form-group m-2 p-2 h-50">
+                    <label for="name">Category name</label>
+                    <input type="text" class="form-control input-lg" id="category_name" name="category_name" placeholder="Category Name">
+                </div>
+                <div class="form-group m-2 p-2 h-50">
+                    <label for="color">Category color in hex</label>
+                    <input type="text" class="form-control input-lg" id="category_color" name="category_color" placeholder="000000">
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-lg btn-warning m-2" type="submit" name="submit">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}

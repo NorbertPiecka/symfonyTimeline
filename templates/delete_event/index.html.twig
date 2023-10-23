@@ -3,16 +3,18 @@
 {% block title %}Modify Category{% endblock %}
 
 {% block body %}
+<div class="container d-flex flex-column align-items-center justify-content-center">
     <div>
-        <h1>Are you really want to remove event "{{ event.name }}"?</h1>
+        <h1>Are you really want to remove event "<span style="color: #D1642E">{{ event.name }}</span>"?</h1>
     </div>
     <div>
 
         <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
             <div class="form-group">
-                <button type="submit" name="submit">YES</button>
-                <a href="{{ path('app_admin_panel') }}">NO</a>
+                <button class="btn btn-lg btn-danger m-2" type="submit" name="submit">YES</button>
+                <a class="btn btn-lg btn-info m-2" href="{{ path('app_admin_panel') }}">NO</a>
             </div>
         </form>
     </div>
+</div>
 {% endblock %}
