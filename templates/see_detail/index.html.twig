@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modify Category{% endblock %}
+
+{% block body %}
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+        <h1>{{ event.name }}</h1>
+        {% if event.getStartDateString() != event.getEndDateString()%}
+            <h5>{{ event.getStartDateString() | date('d/m/Y') }} - {{ event.getEndDateString() | date('d/m/Y') }}</h5>
+        {% else %}
+            <h5>{{ event.getStartDateString() | date('d/m/Y') }}</h5>
+        {% endif %}
+        <div class="bg-white m-2 text-dark bg-opacity-50">
+            <p class="detail-description">{{ event.description }}</p>
+        </div>
+        <img class="m-2" src="{{ asset("images/#{event.imagePath}") }}" alt="{{ event.getImagePath() }}">
+    </div>
+{% endblock %}

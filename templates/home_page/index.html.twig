@@ -30,8 +30,8 @@
                             {% else %}
                                 <div class="date">{{ event.getStartDateString() | date('d/m/Y') }}</div>
                             {% endif %}
-                            <p><p>{{ event.description | length>50 ? event.description|slice(0,50) ~ '...' : event.description }}</p></p>
-                            <a class="bnt-more" href="javascript:void(0)">Read more</a>
+                            <p>{{ event.description | length>50 ? event.description|slice(0,200) ~ '...' : event.description }}</p>
+                            <a class="bnt-more" href="{{ path('app_see_detail', {'item': event.id}) }}">Read more</a>
                         </div>
                     </div>
                 {% set i = i + 1 %}

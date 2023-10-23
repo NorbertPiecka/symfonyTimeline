@@ -36,6 +36,10 @@ header {
     }
 }
 
+.detail-description {
+    font-size: 22px;
+}
+
 .timeline {
 
     position: relative;

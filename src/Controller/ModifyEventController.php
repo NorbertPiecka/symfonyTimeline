@@ -45,7 +45,7 @@ class ModifyEventController extends AbstractController
                 $validation_ok = false;
             }
 
-            if(!$desc || strlen($desc)>250)
+            if(!$desc || strlen($desc)>2000)
             {
                 echo "<script>alert('No description provided or description too long');</script>";
                 $validation_ok = false;
