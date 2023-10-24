@@ -3,22 +3,40 @@
 {% block title %}World War II Timeline{% endblock %}
 
 {% block body %}
-    <div>
+    <div class="container d-flex flex-row align-items-center justify-content-evenly">
         <div>
-            <a href="{{ path('app_home_page') }}">ALL</a>
+            <a class="" href="{{ path('app_home_page') }}">ALL</a>
         </div>
         {% for category in categories %}
             <div>
-                <a href="{{ path('app_home_page_id', {'item': category.id}) }}">{{ category.name }}</a>
+                <a class="" href="{{ path('app_home_page_id', {'item': category.id}) }}" style="background: {{ category.color }}">{{ category.name }}</a>
             </div>
         {% endfor %}
     </div>
     <div>
-        {% for event in events %}
-            <div>
-                <p>{{ event.name }}</p>
-                <br>
+        <section class="timeline">
+            <div class="container">
+                {% set i = 0 %}
+                {% set array = ['Right','Left'] %}
+                {% for event in events %}
+                    <div class="timeline-item">
+                        <div class="timeline-img"></div>
+                        <div class="timeline-content timeline-card js--fadeIn{{ array[i%2] }}">
+                            <div class="timeline-img-header" style="background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0, .4)), url('{{ asset("images/#{event.imagePath}") }}') center center no-repeat;">
+                                <h2>{{ event.name }}</h2>
+                            </div>
+                            {% if event.getStartDateString() != event.getEndDateString()%}
+                                <div class="date">{{ event.getStartDateString() | date('d/m/Y') }} - {{ event.getEndDateString() | date('d/m/Y') }}</div>
+                            {% else %}
+                                <div class="date">{{ event.getStartDateString() | date('d/m/Y') }}</div>
+                            {% endif %}
+                            <p>{{ event.description | length>50 ? event.description|slice(0,200) ~ '...' : event.description }}</p>
+                            <a class="bnt-more" href="{{ path('app_see_detail', {'item': event.id}) }}">Read more</a>
+                        </div>
+                    </div>
+                {% set i = i + 1 %}
+                {% endfor %}
             </div>
-        {% endfor %}
+        </section>
     </div>
 {% endblock %}
