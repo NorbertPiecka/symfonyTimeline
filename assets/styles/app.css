@@ -79,7 +79,7 @@ header {
                 top: 30px;
                 left: -15px;
                 border-width: 10px 15px 10px 0;
-                border-color: transparent #539E68 transparent transparent;
+                border-color: transparent #B5AE77 transparent transparent;
             }
         }
     }
@@ -97,7 +97,7 @@ header {
     width: 45%;
     padding: 10px 30px;
     border-radius: 4px;
-    background: #539E68;
+    background: #B5AE77;
     box-shadow: 0 20px 25px -15px rgba(0, 0, 0, .3);
 
     &::after {
@@ -109,7 +109,7 @@ header {
         top: 30px;
         right: -15px;
         border-width: 10px 0 10px 15px;
-        border-color: transparent transparent transparent #539E68;
+        border-color: transparent transparent transparent #B5AE77;
     }
 }
 
