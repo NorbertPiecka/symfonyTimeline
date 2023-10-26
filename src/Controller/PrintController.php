@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PdfGeneratorController extends AbstractController
+class PrintController extends AbstractController
 {
     private $appKernel;
     private EntityManagerInterface $entityManager;
@@ -24,7 +24,7 @@ class PdfGeneratorController extends AbstractController
     {
         $events = $this->entityManager->getRepository(Event::class)->findAll();
 
-        return $this->render('pdf_generator/index.html.twig', [
+        return $this->render('print/index.html.twig', [
             'events' => $events,
         ]);
     }

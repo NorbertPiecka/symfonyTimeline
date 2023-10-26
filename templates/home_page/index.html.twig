@@ -31,7 +31,7 @@
                                 <div class="date">{{ event.getStartDateString() | date('d/m/Y') }}</div>
                             {% endif %}
                             <p>{{ event.description | length>50 ? event.description|slice(0,200) ~ '...' : event.description }}</p>
-                            <a class="bnt-more" href="{{ path('app_see_detail', {'item': event.id}) }}">Read more</a>
+                            <a class="bnt-more" style="background: {{ event.category.color }}" href="{{ path('app_see_detail', {'item': event.id}) }}">Read more</a>
                         </div>
                     </div>
                 {% set i = i + 1 %}
