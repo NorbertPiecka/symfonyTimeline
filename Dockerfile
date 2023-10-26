@@ -1,6 +1,6 @@
-FROM php:8.2-cli
+FROM --platform=${BUILDPLATFORM:-linux/arm64} php:8.2-cli
 
-RUN apt-get update -y && apt-get install -y libmcrypt-dev zip unzip
+RUN apt-get update -y && apt-get install -y libmcrypt-dev zip unzip qemu-user-static
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install opcache pdo pdo_mysql
 
@@ -10,6 +10,11 @@ COPY . /app
 RUN composer install
 
 COPY docker/symfony /usr/local/bin/symfony
+RUN chmod +rwx /usr/local/bin/symfony
+
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +rwx /usr/local/bin/entrypoint
 
 EXPOSE 8000
-CMD symfony local:server:start
+ENTRYPOINT entrypoint
+#CMD symfony local:server:start
